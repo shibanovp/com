@@ -20,13 +20,12 @@ script:
 - npm run lint
 - xvfb-run -a npm run test -- --single-run --no-progress --browser=ChromeHeadless
 - xvfb-run -a npm run e2e -- --no-progress --config=.travis/protractor-ci.conf
+
 deploy:
-  skip_cleanup: true
   provider: script
-  script:
-  - npm run build --prod
-  - echo "paulshibanov.com" > dist/CNAME
-  - npx angular-cli-ghpages --repo=https://GH_TOKEN@github.com/paulshibanov/blog.git
-    --name="Travis deploy bot" --email="info@paulshibanov.com"
+  skip-cleanup: true
+  keep-history: true
+  verbose: true
+  script: bash .travis/deploy.sh
   on:
     branch: master
