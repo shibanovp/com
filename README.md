@@ -1,7 +1,7 @@
-# Blog
+# Com
 
-[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/paulshibanov/blog)
-[![Build Status](https://travis-ci.org/paulshibanov/blog.svg?branch=develop)](https://travis-ci.org/paulshibanov/blog)
+[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/paulshibanov/com)
+[![Build Status](https://travis-ci.org/paulshibanov/com.svg?branch=develop)](https://travis-ci.org/paulshibanov/com)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
