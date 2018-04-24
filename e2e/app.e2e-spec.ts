@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('blog App', () => {
+describe('com App', () => {
   let page: AppPage;
 
   beforeEach(() => {
@@ -9,6 +9,6 @@ describe('blog App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Yet another blog about software engineering.');
+    expect(page.getParagraphText()).toEqual('My personal page.');
   });
 });
