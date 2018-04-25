@@ -1,0 +1,16 @@
+@import "~@angular/material/_theming.scss";
+#stackshare {
+  width: 100%;
+  min-height: 2400px;
+  //background-color: red;
+}
+@media (max-width: 550px) {
+  #stackshare {
+    min-height: 1800px;
+  }
+}
+@media (max-width: 388px) {
+  #stackshare {
+    min-height: 1600px;
+  }
+}
