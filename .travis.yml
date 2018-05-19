@@ -18,8 +18,8 @@ before_script:
 - export CHROME_BIN=chromium-browser
 script:
 - npm run lint
-- xvfb-run -a npm run test -- --single-run --no-progress --browser=ChromeHeadless
-- xvfb-run -a npm run e2e -- --no-progress --config=.travis/protractor-ci.conf
+- xvfb-run -a npm run test -- --watch=false --no-progress --browsers=ChromeHeadless
+- xvfb-run -a npm run e2e -- --protractor-config=.travis/protractor-ci.conf
 
 deploy:
   provider: script
