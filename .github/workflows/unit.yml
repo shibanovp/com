@@ -1,0 +1,11 @@
+name: Unit tests
+on: [push]
+jobs:
+  ng_test:
+    name: ng test
+    runs-on: ubuntu-latest
+    container:
+      image: alpine:3.11.5
+    steps:
+      - name: Run unit tests
+        run: echo "Run unit tests"
