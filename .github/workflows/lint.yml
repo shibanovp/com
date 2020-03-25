@@ -1,0 +1,11 @@
+name: Lint
+on: [push]
+jobs:
+  ng_lint:
+    name: ng lint
+    runs-on: ubuntu-latest
+    container:
+      image: alpine:3.11.5
+    steps:
+      - name: Lint the code
+        run: echo "Run lint"
