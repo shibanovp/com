@@ -19,13 +19,13 @@ jobs:
   #         --cache
   #         --cache-repo paulshibanov/com
   #         --context $GITHUB_WORKSPACE
-  #         --destination paulshibanov/com:$GITHUB_SHA
+  #         --destination paulshibanov/com:$IMAGE
   ng_lint:
     # needs: [kaniko_build]
     name: ng lint
     runs-on: ubuntu-latest
     container:
-      image: $(printf "%s" $IMAGE)
+      image: paulshibanov/com:${{ IMAGE }}
     steps:
       - name: Lint the code
         run: ng lint
