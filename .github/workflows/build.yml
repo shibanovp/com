@@ -9,10 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Create dockerconfig
-        run: printf $FORMAT ${{ secrets.REGCRED }} > /kaniko/.docker/config.json
+        run: printf $FORMAT test > /kaniko/.docker/config.json
         env:
-          FORMAT: '{"auths": {"https://index.docker.io/v1/": {"auth": "%s"}}}'
-      - name: Create dockerconfig
+          FORMAT: '{"auths": {"https://index.docker.io/v1/": {"auth": "%s"}}}\n'
+      - name: test format
+        run: cat /kaniko/.docker/config.json
+      - name: Build image
         run: /kaniko/executor
           --cache
           --destination paulshibanov/com:$GITHUB_SHA
