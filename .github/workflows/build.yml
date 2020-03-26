@@ -1,0 +1,16 @@
+name: Build image
+on: [push]
+jobs:
+  kaniko_build:
+    name: kaniko build
+    runs-on: ubuntu-latest
+    container:
+      image: gcr.io/kaniko-project/executor:debug
+    steps:
+      - uses: actions/checkout@v1
+      - name: Create dockerconfig
+        run: printf '{"auths": {"https://index.docker.io/v1/": {"auth": "%s"}}}' ${{ secrets.REGCRED }} > /kaniko/.docker/config.json
+      - name: Create dockerconfig
+        run: /kaniko/executor
+          --cache
+          --destination paushibanov/com:$GITHUB_SHA
