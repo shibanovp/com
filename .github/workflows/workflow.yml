@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: paulshibanov/com:${{ github.sha }}
+      working-directory: /srv
     steps:
       - name: Lint the code
         run: ng lint
