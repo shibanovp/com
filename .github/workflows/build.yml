@@ -15,4 +15,4 @@ jobs:
       - name: Create dockerconfig
         run: /kaniko/executor
           --cache
-          --destination paushibanov/com:$GITHUB_SHA
+          --destination paulshibanov/com:$GITHUB_SHA
