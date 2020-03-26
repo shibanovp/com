@@ -15,4 +15,5 @@ jobs:
       - name: Build image
         run: /kaniko/executor
           --cache
+          --context $GITHUB_WORKSPACE
           --destination paulshibanov/com:$GITHUB_SHA
