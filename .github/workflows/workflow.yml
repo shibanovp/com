@@ -1,27 +1,25 @@
 name: CI/CD
-env:
-  IMAGE: node:alpine
 on: [push]
 jobs:
-  # kaniko_build:
-  #   name: kaniko build
-  #   runs-on: ubuntu-latest
-  #   container:
-  #     image: gcr.io/kaniko-project/executor:debug
-  #   steps:
-  #     - uses: actions/checkout@v1
-  #     - name: Create dockerconfig
-  #       run: printf $FORMAT ${{ secrets.REGCRED }} > /kaniko/.docker/config.json
-  #       env:
-  #         FORMAT: '{"auths":{"https://index.docker.io/v1/":{"auth":"%s"}}}'
-  #     - name: Build image
-  #       run: /kaniko/executor
-  #         --cache
-  #         --cache-repo paulshibanov/com
-  #         --context $GITHUB_WORKSPACE
-  #         --destination paulshibanov/com:$IMAGE
+  kaniko_build:
+    name: kaniko build
+    runs-on: ubuntu-latest
+    container:
+      image: gcr.io/kaniko-project/executor:debug
+    steps:
+      - uses: actions/checkout@v1
+      - name: Create dockerconfig
+        run: printf $FORMAT ${{ secrets.REGCRED }} > /kaniko/.docker/config.json
+        env:
+          FORMAT: '{"auths":{"https://index.docker.io/v1/":{"auth":"%s"}}}'
+      - name: Build image
+        run: /kaniko/executor
+          --cache
+          --cache-repo paulshibanov/com
+          --context $GITHUB_WORKSPACE
+          --destination paulshibanov/com:$GITHUB_SHA
   ng_lint:
-    # needs: [kaniko_build]
+    needs: [kaniko_build]
     name: ng lint
     runs-on: ubuntu-latest
     container:
