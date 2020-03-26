@@ -25,7 +25,7 @@ jobs:
     name: ng lint
     runs-on: ubuntu-latest
     container:
-      image: $IMAGE
+      image: ${IMAGE}
     steps:
       - name: Lint the code
         run: ng lint
