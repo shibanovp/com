@@ -38,7 +38,7 @@ jobs:
       image: paulshibanov/com:${{ github.sha }}
     steps:
       - name: Run unit tests
-        run: ng test --watch=false --browsers=ChromeHeadless
+        run: ng test --watch=false --codeCoverage=true --browsers=ChromeHeadless
         working-directory: /srv
 
   ng_e2e:
