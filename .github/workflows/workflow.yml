@@ -18,6 +18,7 @@ jobs:
           --cache-repo paulshibanov/com
           --context $GITHUB_WORKSPACE
           --destination paulshibanov/com:$GITHUB_SHA
+
   ng_lint:
     needs: [kaniko_build]
     name: ng lint
@@ -27,4 +28,26 @@ jobs:
     steps:
       - name: Lint the code
         run: ng lint
+        working-directory: /srv
+
+  ng_test:
+    needs: [kaniko_build]
+    name: ng test
+    runs-on: ubuntu-latest
+    container:
+      image: paulshibanov/com:${{ github.sha }}
+    steps:
+      - name: Run unit tests
+        run: ng test --watch=false --browsers=ChromeHeadless
+        working-directory: /srv
+
+  ng_e2e:
+    needs: [kaniko_build]
+    name: ng e2e
+    runs-on: ubuntu-latest
+    container:
+      image: paulshibanov/com:${{ github.sha }}
+    steps:
+      - name: Run e2e tests
+        run: echo "Run e2e tests"
         working-directory: /srv
