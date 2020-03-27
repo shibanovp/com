@@ -8,8 +8,6 @@ jobs:
       image: gcr.io/kaniko-project/executor:debug
     steps:
       - uses: actions/checkout@v1
-        with:
-          fetch-depth: 0
       - name: Create dockerconfig
         run: printf $FORMAT ${{ secrets.REGCRED }} > /kaniko/.docker/config.json
         env:
