@@ -49,5 +49,5 @@ jobs:
       image: paulshibanov/com:${{ github.sha }}
     steps:
       - name: Run e2e tests
-        run: echo "Run e2e tests"
+        run: ng e2e --protractorConfig=e2e/headless.conf
         working-directory: /srv
