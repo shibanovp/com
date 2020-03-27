@@ -22,6 +22,8 @@ module.exports = function (config) {
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
+    processKillTimeout: 4000,
+    browserDisconnectTimeout: 4000,
     colors: true,
     logLevel: config.LOG_DEBUG,
     autoWatch: true,
