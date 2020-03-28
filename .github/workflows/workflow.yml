@@ -38,7 +38,10 @@ jobs:
       image: paulshibanov/com:${{ github.sha }}
     steps:
       - name: Run unit tests
-        run: ng test --watch=false --browsers=ChromeHeadless
+        run: ng test --watch=false --codeCoverage=true --browsers=ChromeHeadless
+        working-directory: /srv
+      - name: Upload code coverage report
+        run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
         working-directory: /srv
 
   ng_e2e:
