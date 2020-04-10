@@ -62,12 +62,13 @@ jobs:
     container:
       image: mikefarah/yq
     steps:
+      - uses: actions/checkout@v1
       - name: update image
-        run: yq --version
+        run: yq w -i manifests/deployment.yaml spec.template.spec.containers[0].image paulshibanov/com:${{ github.sha }}
       - uses: actions/upload-artifact@master
         with:
-          name: manifests
-          path: manifests
+          name: deployment
+          path: manifests/deployment.yaml
 
   deployment:
     needs: [ng_lint, ng_test, ng_e2e]
@@ -82,7 +83,7 @@ jobs:
         run: mkdir $HOME/.kube && printenv KUBE > $HOME/.kube/config
       - uses: actions/download-artifact@master
         with:
-          name: manifests
-          path: manifests
+          name: deployment
+          path: manifests/deployment.yaml
       - name: Deploy
-        run: kubectl get pods
+        run: kubectl apply -f manifests/deployment.yaml
