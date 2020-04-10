@@ -62,5 +62,9 @@ jobs:
     container:
       image: lachlanevenson/k8s-kubectl
     steps:
+      - name: Configure access
+        env:
+          KUBE: ${{ secrets.KUBE }}
+        run: mkdir /root/.kube && printenv KUBE > /root/.kube/config
       - name: Test new job
-        run: kubectl version
+        run: kubectl -n default get pods
