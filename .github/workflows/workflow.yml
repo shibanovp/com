@@ -65,6 +65,6 @@ jobs:
       - name: Configure access
         env:
           KUBE: ${{ secrets.KUBE }}
-        run: mkdir /root/.kube && printenv KUBE > /root/.kube/config
+        run: mkdir $HOME/.kube && printenv KUBE > $HOME/.kube/config
       - name: Test new job
         run: kubectl -n default get pods
