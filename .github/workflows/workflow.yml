@@ -54,3 +54,13 @@ jobs:
       - name: Run e2e tests
         run: ng e2e --protractorConfig=e2e/headless.conf
         working-directory: /srv
+
+  deployment:
+    needs: [ng_lint, ng_test, ng_e2e]
+    name: Deploy
+    runs-on: ubuntu-latest
+    container:
+      image: lachlanevenson/k8s-kubectl
+    steps:
+      - name: Test new job
+        run: kubectl version
