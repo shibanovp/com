@@ -31,7 +31,7 @@ jobs:
     name: ng lint
     runs-on: ubuntu-latest
     container:
-      image: paulshibanov/com:${{ github.sha }}
+      image: paulshibanov/com:sha-${{ github.sha }}
     steps:
       - name: Lint the code
         run: ng lint

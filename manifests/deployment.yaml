@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: paulshibanov-com-deployment
   labels:
+    app.kubernetes.io/name: paulshibanov-com
     app: paulshibanov-com
 spec:
   selector:
