@@ -57,7 +57,7 @@ jobs:
 
   patch_deployment:
     needs: [ng_lint, ng_test, ng_e2e]
-    name: Patch deployment
+    name: patch
     runs-on: ubuntu-latest
     container:
       image: mikefarah/yq
@@ -71,7 +71,7 @@ jobs:
           path: manifests/deployment.yaml
 
   deployment:
-    needs: [ng_lint, ng_test, ng_e2e]
+    needs: [ng_lint, ng_test, ng_e2e, patch_deployment]
     name: kubectl deploy
     runs-on: ubuntu-latest
     container:
