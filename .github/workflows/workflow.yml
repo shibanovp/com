@@ -55,9 +55,23 @@ jobs:
         run: ng e2e --protractorConfig=e2e/headless.conf
         working-directory: /srv
 
+  patch_deployment:
+    needs: [ng_lint, ng_test, ng_e2e]
+    name: Patch deployment
+    runs-on: ubuntu-latest
+    container:
+      image: mikefarah/yq
+    steps:
+      - name: update image
+        run: yq --version
+      - uses: actions/upload-artifact@master
+        with:
+          name: manifests
+          path: manifests
+
   deployment:
     needs: [ng_lint, ng_test, ng_e2e]
-    name: Deploy
+    name: kubectl deploy
     runs-on: ubuntu-latest
     container:
       image: lachlanevenson/k8s-kubectl
@@ -66,5 +80,9 @@ jobs:
         env:
           KUBE: ${{ secrets.KUBE }}
         run: mkdir $HOME/.kube && printenv KUBE > $HOME/.kube/config
-      - name: Test new job
-        run: kubectl -n default get pods
+      - uses: actions/download-artifact@master
+        with:
+          name: manifests
+          path: manifests
+      - name: Deploy
+        run: kubectl get pods
