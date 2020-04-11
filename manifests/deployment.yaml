@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paulshibanov-com-deployment
+  labels:
+    app.kubernetes.io/name: paulshibanov-com
+    app: paulshibanov-com
+spec:
+  selector:
+    matchLabels:
+      app: paulshibanov-com
+  template:
+    metadata:
+      labels:
+        app: paulshibanov-com
+    spec:
+      containers:
+      - name: nginx
+        image: paulshibanov/com:latest
+        ports:
+        - name: http
+          containerPort: 80

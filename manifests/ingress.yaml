@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: paulshibanov-com
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: paulshibanov.com
+  labels:
+    app.kubernetes.io/name: paulshibanov-com
+spec:
+  rules:
+  - host: paulshibanov.com
+    http:
+      paths:
+      - backend:
+          serviceName: paulshibanov-com
+          servicePort: 80
+        path: /

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: paulshibanov-com
+spec:
+  selector:
+    app: paulshibanov-com
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: http
