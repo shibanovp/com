@@ -19,6 +19,19 @@ jobs:
           --context $GITHUB_WORKSPACE
           --target test
           --destination paulshibanov/com:sha-$GITHUB_SHA
+
+  kaniko_build_prod:
+    needs: [kaniko_build]
+    name: kaniko build
+    runs-on: ubuntu-latest
+    container:
+      image: gcr.io/kaniko-project/executor:debug
+    steps:
+      - uses: actions/checkout@v1
+      - name: Create dockerconfig
+        run: printf $FORMAT ${{ secrets.REGCRED }} > /kaniko/.docker/config.json
+        env:
+          FORMAT: '{"auths":{"https://index.docker.io/v1/":{"auth":"%s"}}}'
       - name: Build prod image
         run: /kaniko/executor
           --cache
@@ -79,7 +92,7 @@ jobs:
           path: manifests/deployment.yaml
 
   deployment:
-    needs: [ng_lint, ng_test, ng_e2e, patch_deployment]
+    needs: [ng_lint, ng_test, ng_e2e, patch_deployment, kaniko_build_prod]
     if: github.ref == 'refs/heads/master'
     name: kubectl deploy
     runs-on: ubuntu-latest
