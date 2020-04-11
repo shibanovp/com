@@ -64,6 +64,7 @@ jobs:
 
   patch_deployment:
     needs: [ng_lint, ng_test, ng_e2e]
+    if: github.ref == 'refs/heads/develop'
     name: patch
     runs-on: ubuntu-latest
     container:
@@ -79,6 +80,7 @@ jobs:
 
   deployment:
     needs: [ng_lint, ng_test, ng_e2e, patch_deployment]
+    if: github.ref == 'refs/heads/develop'
     name: kubectl deploy
     runs-on: ubuntu-latest
     container:
