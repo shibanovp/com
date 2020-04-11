@@ -80,7 +80,7 @@ jobs:
 
   deployment:
     needs: [ng_lint, ng_test, ng_e2e, patch_deployment]
-    if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/master'
     name: kubectl deploy
     runs-on: ubuntu-latest
     container:
