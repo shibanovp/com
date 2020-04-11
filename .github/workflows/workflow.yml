@@ -64,7 +64,7 @@ jobs:
 
   patch_deployment:
     needs: [ng_lint, ng_test, ng_e2e]
-    if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/master'
     name: patch
     runs-on: ubuntu-latest
     container:
