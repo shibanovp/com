@@ -47,7 +47,7 @@ jobs:
       image: paulshibanov/com:sha-${{ github.sha }}
     steps:
       - name: Lint the code
-        run: ng lint
+        run: npx ng lint
         working-directory: /srv
 
   ng_test:
@@ -58,7 +58,7 @@ jobs:
       image: paulshibanov/com:sha-${{ github.sha }}
     steps:
       - name: Run unit tests
-        run: ng test --watch=false --codeCoverage=true --browsers=ChromeHeadless
+        run: npx ng test --watch=false --codeCoverage=true --browsers=ChromeHeadless
         working-directory: /srv
       - name: Upload code coverage report
         run: npx codecov -t ${{ secrets.CODECOV_TOKEN }}
@@ -72,7 +72,7 @@ jobs:
       image: paulshibanov/com:sha-${{ github.sha }}
     steps:
       - name: Run e2e tests
-        run: ng e2e --protractorConfig=e2e/headless.conf
+        run: npx ng e2e --protractorConfig=e2e/headless.conf
         working-directory: /srv
 
   patch_deployment:
