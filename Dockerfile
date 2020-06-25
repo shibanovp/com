@@ -12,5 +12,5 @@ COPY --chown=seluser:seluser . .
 FROM test as build
 RUN npx ng build --prod
 
-FROM nginx:1.18.0-alpine
+FROM nginx:1.19.0-alpine
 COPY --from=build /srv/dist/com /usr/share/nginx/html
