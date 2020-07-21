@@ -18,6 +18,7 @@ jobs:
           --cache-repo paulshibanov/com
           --context $GITHUB_WORKSPACE
           --target test
+          --force
           --destination paulshibanov/com:sha-$GITHUB_SHA
 
   kaniko_build_prod:
@@ -37,6 +38,7 @@ jobs:
           --cache
           --cache-repo paulshibanov/com
           --context $GITHUB_WORKSPACE
+          --force
           --destination paulshibanov/com:$GITHUB_SHA
 
   ng_lint:
