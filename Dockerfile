@@ -1,4 +1,4 @@
-FROM selenium/standalone-chrome:84.0 as test
+FROM selenium/standalone-chrome:85.0 as test
 USER root
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt install -y git nodejs python build-essential
