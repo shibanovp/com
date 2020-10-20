@@ -7,7 +7,7 @@ jobs:
     container:
       image: gcr.io/kaniko-project/executor:debug
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Create dockerconfig
         run: printf $FORMAT ${{ secrets.REGCRED }} > /kaniko/.docker/config.json
         env:
@@ -28,7 +28,7 @@ jobs:
     container:
       image: gcr.io/kaniko-project/executor:debug
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Create dockerconfig
         run: printf $FORMAT ${{ secrets.REGCRED }} > /kaniko/.docker/config.json
         env:
@@ -86,7 +86,7 @@ jobs:
     container:
       image: mikefarah/yq
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: update image
         run: yq w -i manifests/deployment.yaml spec.template.spec.containers[0].image paulshibanov/com:${{ github.sha }}
       - uses: actions/upload-artifact@master
